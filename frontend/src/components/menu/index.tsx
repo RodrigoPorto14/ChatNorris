@@ -1,5 +1,5 @@
 import './styles.css';
-import { faPlus, faMessage } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Menu = () =>
