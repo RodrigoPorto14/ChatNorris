@@ -1,12 +1,4 @@
-.chat-container
-{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color3);
-    padding-bottom: 40px;
-}
-
-.navbar {
+.title {
      display: flex;
      justify-content: center;
      background-color: var(--color2);
@@ -15,7 +7,7 @@
      top: 0;
      text-align:center;
 }
- .navbar a {
+ .title h1 {
      color: white;
      text-decoration: none;
      padding: 15px 20px;

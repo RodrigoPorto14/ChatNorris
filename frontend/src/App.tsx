@@ -1,13 +1,16 @@
-import Menu from './components/menu'
-import Chat from './components/chat';
+import Chat from './pages/Chat';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => 
 {
     return(
-    <div className='app-container'>
-        <Menu />
-        <Chat />
-    </div>
+
+        <BrowserRouter>
+            <Routes>
+                <Route index element={<Chat />} />
+            </Routes>  
+        </BrowserRouter>
+        
     )
 }
 
