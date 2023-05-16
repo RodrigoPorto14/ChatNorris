@@ -8,7 +8,8 @@ const Chat = () =>
 
     const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
 
-    function handleSelectChat(chatId: number | null) {
+    function handleSelectChat(chatId: number | null) 
+    {
         setSelectedChatId(chatId);
     }
 

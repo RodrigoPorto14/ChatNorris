@@ -16,7 +16,6 @@ const ChatDetails = ( {chatId, setChatId} : ChatDetailsProps ) =>
   const [messages, setMessages] = useState<Message[]>([]);
   const messageContainerRef = useRef<HTMLDivElement>(null);
 
-
   /****************************************************************** 
    A cada mudança do estado "chatId", é feita uma requisição das
    mensagens da conversa com id = "chatId", mudando o estado
@@ -59,7 +58,8 @@ const ChatDetails = ( {chatId, setChatId} : ChatDetailsProps ) =>
    Atualiza o estado de "inputText" para o atual texto do input
    cada vez que esse texto é alterado
   ******************************************************************/
-  const handleInputChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+  const handleInputChange = (event: { target: { value: React.SetStateAction<string> } }) => 
+  {
     setInputText(event.target.value);
   };
 
@@ -68,8 +68,10 @@ const ChatDetails = ( {chatId, setChatId} : ChatDetailsProps ) =>
    Chama a função de envio de mensagem também quando é apertado
    a tecla "Enter"
   ******************************************************************/
-  const handleKeyDown = (event: { key: string; preventDefault: () => void }) => {
-    if (event.key === 'Enter') {
+  const handleKeyDown = (event: { key: string; preventDefault: () => void }) => 
+  {
+    if (event.key === 'Enter') 
+    {
       event.preventDefault();
       handleSendMessage();
     }
@@ -117,7 +119,7 @@ const ChatDetails = ( {chatId, setChatId} : ChatDetailsProps ) =>
   }
 
   /****************************************************************** 
-   Chama a função createMessages para criar uma nova mensagem no
+   Chama a função createNewMessages para criar uma nova mensagem no
    banco de dados com a mensagem enviada pelo usuario e depois
    requisita a mensagem do bot e chama a mesma função para
    criar a mensagem do bot no banco.

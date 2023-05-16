@@ -56,7 +56,7 @@
  .message-container {
      width:auto;
      height: 68%;
-   margin-top: 35px;
+    margin-top: 35px;
      overflow-y: scroll;
      max-height: calc(100vh - 170px);     
 }
@@ -75,7 +75,6 @@
 }
  .message.user {
      background-color: var(--color1);
-    
      text-align: right;
 }
  .message.bot {
