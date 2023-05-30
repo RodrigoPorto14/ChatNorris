@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rodri.chatnorris.dto.ChatDTO;
 import com.rodri.chatnorris.entities.Chat;
@@ -19,13 +20,16 @@ public class ChatService {
 	@Autowired
 	AuthService authService;
 	
+	@Transactional(readOnly=true)
 	public List<ChatDTO> findByUserAuthenticated()
 	{
 		User user = authService.authenticated();
-		List<Chat> chats = chatRep.findByUser(user);
-		return chats.stream().map(c -> new ChatDTO(c)).toList();
+		return chatRep.findByUser(user);
+		//List<Chat> chats = chatRep.findByUser(user);
+		//return chats.stream().map(c -> new ChatDTO(c)).toList();
 	}
 	
+	@Transactional
 	public ChatDTO insert(ChatDTO dto)
 	{
 		User user = authService.authenticated(); 

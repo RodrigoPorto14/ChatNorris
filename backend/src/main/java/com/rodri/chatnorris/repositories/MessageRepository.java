@@ -9,5 +9,5 @@ import com.rodri.chatnorris.entities.Message;
 
 public interface MessageRepository extends JpaRepository<Message,Long>{
 	
-	List<Message> findByChat(Chat chat);
+	List<Message> findByChatOrderByCreatedAt(Chat chat);
 }

@@ -2,12 +2,16 @@ package com.rodri.chatnorris.dto;
 
 import java.time.Instant;
 
+import javax.validation.constraints.NotNull;
+
 import com.rodri.chatnorris.entities.Message;
 
 public class MessageInsertDTO extends MessageDTO {
 	private static final long serialVersionUID = 1L;
 	
 	private Instant createdAt;
+	
+	@NotNull(message = "Campo obrigatório")
 	private Long chatId;
 	
 	

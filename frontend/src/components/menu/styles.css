@@ -13,7 +13,7 @@
     display: flex;
     background-color: var(--color1);
     color: white;
-    height: 45.6px;
+    height: 20px;
     margin: 0.8px;
     padding: 12px;
     border-style: solid;
@@ -85,6 +85,7 @@
 .perfil-container
 {
     display: flex;
+    flex-direction: column;
     background-color: var(--color1);
     height: 140px;
     width: 100%;

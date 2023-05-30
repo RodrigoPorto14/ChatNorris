@@ -7,6 +7,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rodri.chatnorris.dto.MessageDTO;
 import com.rodri.chatnorris.dto.MessageInsertDTO;
@@ -30,7 +31,7 @@ public class MessageService {
 	@Autowired
 	AuthService authService;
 	
-	
+	@Transactional(readOnly=true)
 	public List<MessageDTO> findByChat(Long chatId)
 	{
 		User user = authService.authenticated();
@@ -40,10 +41,11 @@ public class MessageService {
 		if(!user.equals(chat.getUser())) throw new ForbiddenException("Access denied");
 	
 		//List<Message> messages = chat.getMessages();
-		List<Message> messages = messageRep.findByChat(chat);
+		List<Message> messages = messageRep.findByChatOrderByCreatedAt(chat);
 		return messages.stream().map(m -> new MessageDTO(m)).toList();
 	}
 	
+	@Transactional
 	public MessageInsertDTO insert(MessageInsertDTO dto)
 	{
 		try

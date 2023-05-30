@@ -2,11 +2,10 @@ package com.rodri.chatnorris.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +31,7 @@ public class Chat implements Serializable {
 	private User user;
 	
 	@OneToMany(mappedBy = "chat")
-	private List<Message> messages = new ArrayList<>();
+	private Set<Message> messages = new HashSet<>();
 	
 	public Chat() {}
 
@@ -65,7 +64,7 @@ public class Chat implements Serializable {
 		this.user = user;
 	}
 
-	public List<Message> getMessages() {
+	public Set<Message> getMessages() {
 		return messages;
 	}
 

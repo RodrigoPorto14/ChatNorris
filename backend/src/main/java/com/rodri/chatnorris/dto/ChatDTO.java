@@ -2,6 +2,8 @@ package com.rodri.chatnorris.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+
 import com.rodri.chatnorris.entities.Chat;
 
 
@@ -9,10 +11,17 @@ public class ChatDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotBlank(message = "Campo obrigatório")
 	private String title;
 	
 	public ChatDTO() {}
 	
+	public ChatDTO(Long id, String title) {
+		this.id = id;
+		this.title = title;
+	}
+
 	public ChatDTO(Chat entity)
 	{
 		title = entity.getTitle();

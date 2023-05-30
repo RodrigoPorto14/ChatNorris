@@ -1,59 +1,54 @@
 import './styles.css';
-import axios from 'axios';
-import Chat from '../../types/Chat'
-import { useState, useEffect } from 'react';
+import { useEffect} from 'react';
+import Conversation from '../../types/Conversation'
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { BASE_URL, CONFIG } from '../../utils/request'
+import { makePrivateRequest } from '../../utils/request';
+import { getUserAuthenticated, logout } from '../../utils/auth';
 
 type MenuProps = 
 {
-    chatId : number | null
-    onSelectChat: (chatId: number | null) => void;
+    selectedChatId : string | undefined
+    chats : Conversation[]
+    setChats : (chats : Conversation[]) => void
 }
 
-
-const Menu = ( {chatId, onSelectChat} : MenuProps ) =>
+const Menu = ( {selectedChatId, chats, setChats} : MenuProps ) =>
 {
-    const [chats, setChats] = useState<Chat[]>([])
-    const [activeChat, setActiveChat] = useState<number | null>(null);
-
     useEffect(() => 
     {
-        axios.get(`${BASE_URL}/chats`, CONFIG)
-        .then((response) => { setChats(response.data); })
-        .catch((error) => { console.log(error); })
-        setActiveChat(chatId);
+        makePrivateRequest({ url: '/chats'})
+             .then((response) => { setChats(response.data); })
+             .catch((error) => { console.log(error); })
         
-    }, [chatId]);
-
-
-    const handleChatClick = (chatId : number | null) => {
-        onSelectChat(chatId);
-      };
+    }, []);
 
     return(
 
         <nav className="menu-container">
-
-            <button className='new-chat-button' onClick={ () => handleChatClick(null) }>
+            
+            <Link className='new-chat-button' to="/" >
                 <FontAwesomeIcon className="plus-icon" icon={faPlus} />
                 New chat
-            </button>
+            </Link>
 
             <ul className='history-container'>
                 {
-                    chats.map((chat: Chat) => (
-                    <li 
-                        key={chat.id} 
-                        className = {`menu-link ${chat.id === activeChat ? 'active' : ''}`} 
-                        onClick={() => handleChatClick(chat.id)}> {chat.title} 
-                    </li>))
+                    chats.map((chat: Conversation) => (
+                    <Link
+                        className = {`menu-link ${chat.id.toString() === selectedChatId ? 'active' : ''}`} 
+                        to = {`/chats/${chat.id}`}
+                        key = {chat.id} 
+                    > 
+                        {chat.title} 
+                    </Link>))
                 }  
             </ul>
 
             <div className="perfil-container">
-                <a className="menu-link" href="#a">Upgrade to Plus</a>
+                <button className="menu-link" >{getUserAuthenticated()}</button>
+                <button className="menu-link" onClick={logout} >Logout</button>
             </div>
 
         </nav>

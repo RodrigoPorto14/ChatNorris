@@ -1,11 +1,56 @@
-export const BASE_URL =  "http://localhost:8080";
+import axios, { AxiosRequestConfig } from 'axios';
+import qs from 'qs';
+import { CLIENT_ID, CLIENT_SECRET, getSessionData, logout } from './auth';
 
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODQzNDM4NjEsInVzZXJfbmFtZSI6InJvZHJpZ29AZ21haWwuY29tIiwianRpIjoiZDZhNmExMzEtMzg5Yy00ZDhlLWE1ZGItZTRlODhkZWFkZDRjIiwiY2xpZW50X2lkIjoiY2hhdG5vcnJpcyIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.jw9RUxFtIwI_bZegG2ld9MjNU416LgBey8v_Gz3Lcno';
-
-export const CONFIG = 
+type LoginData = 
 {
-    headers: 
-    {
-        'Authorization': `Bearer ${TOKEN}`
-    }
+  username: String;
+  password: String;
+}
+
+const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
+
+axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  if (error.response.status === 401) {
+    logout();
+  }
+  return Promise.reject(error);
+});
+
+export const makeRequest = (params: AxiosRequestConfig) => 
+{
+  return axios({
+    ...params,
+    baseURL: BASE_URL
+  });
+}
+
+export const makePrivateRequest = (params: AxiosRequestConfig) => 
+{
+  const sessionData = getSessionData();
+
+  const headers = {
+    'Authorization': `Bearer ${sessionData.access_token}`
+  }
+
+  return makeRequest({ ...params, headers });
+
+}
+
+export const makeLogin = (loginData: LoginData) => 
+{
+  const token = `${CLIENT_ID}:${CLIENT_SECRET}`;
+
+  const headers = 
+  {
+    Authorization: `Basic ${window.btoa(token)}`,
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+
+  const payload = qs.stringify({ ...loginData, grant_type: 'password' });
+
+  return makeRequest({ url: '/oauth/token', data: payload, method: 'POST', headers });
+
 }

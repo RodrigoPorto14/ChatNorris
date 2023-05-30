@@ -1,17 +1,10 @@
-import Chat from './pages/Chat';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Routing from "./Routing";
 
-const App = () => 
-{
-    return(
+const App = () => {
 
-        <BrowserRouter>
-            <Routes>
-                <Route index element={<Chat />} />
-            </Routes>  
-        </BrowserRouter>
-        
-    )
-}
+  return (
+    <Routing />
+  );
+};
 
 export default App;

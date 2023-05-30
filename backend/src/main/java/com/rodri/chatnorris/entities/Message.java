@@ -23,7 +23,9 @@ public class Message implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(columnDefinition="TEXT")
 	private String text;
+	
 	private boolean isUser;
 	
 	@Column(columnDefinition="TIMESTAMP WITHOUT TIME ZONE")
