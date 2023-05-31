@@ -19,10 +19,10 @@ const Chat = () =>
   const navigate = useNavigate();
 
   /****************************************************************** 
-   A cada mudança do estado "chatId", é feita uma requisição das
-   mensagens da conversa com id = "chatId", mudando o estado
+   A cada mudança do parâmetro "selectedChatId", é feita uma requisição 
+   das mensagens da conversa com id = "selectedChatId", mudando o estado
    de "messages" para a lista de mensagens recebida pela requisição.
-   Em caso de "chatId" = null, o estado "messages" é atualizado
+   Em caso de "selectedChatId" = undefined, o estado "messages" é atualizado
    para uma lista vazia.
   ******************************************************************/
   useEffect(() => 
@@ -77,7 +77,7 @@ const Chat = () =>
 
   /****************************************************************** 
    Em caso de envio de uma mensagem não vazia, é atualizado o texto
-   do input para vazio e caso o estado "selectedChatId" = undefined, 
+   do input para vazio e caso o parâmetro "selectedChatId" = undefined, 
    é criado uma nova conversa no banco de dados com a mensagem enviada,
    caso contrário, apenas cria as mensagens na conversa selecionada
   ******************************************************************/
@@ -119,10 +119,10 @@ const Chat = () =>
   }
 
   /****************************************************************** 
-   Chama a função createNewMessages para criar uma nova mensagem no
+   Chama a função createNewMessage para inserir uma nova mensagem no
    banco de dados com a mensagem enviada pelo usuario e depois
    requisita a mensagem do bot e chama a mesma função para
-   criar a mensagem do bot no banco.
+   inserir a mensagem do bot no banco.
   ******************************************************************/
   const createMessages = (msg : string, chatId : number) =>
   {
@@ -135,7 +135,6 @@ const Chat = () =>
          }) 
          .catch((error) => { console.log(error); })
   }
-
 
   /****************************************************************** 
    Insere uma mensagem passada no campo "body" no banco de dados

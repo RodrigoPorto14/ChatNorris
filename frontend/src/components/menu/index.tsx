@@ -1,11 +1,11 @@
 import './styles.css';
 import { useEffect} from 'react';
 import Conversation from '../../types/Conversation'
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { makePrivateRequest } from '../../utils/request';
-import { getUserAuthenticated, logout } from '../../utils/auth';
+import { getAuthenticatedUserName, logout } from '../../utils/auth';
 
 type MenuProps = 
 {
@@ -16,6 +16,13 @@ type MenuProps =
 
 const Menu = ( {selectedChatId, chats, setChats} : MenuProps ) =>
 {
+    const navigate = useNavigate()
+
+    /****************************************************************** 
+    A cada renderização do componente é feita uma requisição das
+    conversas do usuário autenticado mudando o estado de "chats"
+    para a lista de conversas recebidas na requisição
+    ******************************************************************/
     useEffect(() => 
     {
         makePrivateRequest({ url: '/chats'})
@@ -23,6 +30,17 @@ const Menu = ( {selectedChatId, chats, setChats} : MenuProps ) =>
              .catch((error) => { console.log(error); })
         
     }, []);
+
+
+    /****************************************************************** 
+    Realiza o logout, apagando o token do usuário do localStorage e
+    atualiza a página
+    ******************************************************************/
+    const handleLogout = () =>
+    {
+        logout();
+        navigate(0)
+    }
 
     return(
 
@@ -46,9 +64,9 @@ const Menu = ( {selectedChatId, chats, setChats} : MenuProps ) =>
                 }  
             </ul>
 
-            <div className="perfil-container">
-                <button className="menu-link" >{getUserAuthenticated()}</button>
-                <button className="menu-link" onClick={logout} >Logout</button>
+            <div className="perfil-container">*
+                <button className="menu-link"> {getAuthenticatedUserName()} </button>
+                <button className="menu-link" onClick={handleLogout}> Logout </button>
             </div>
 
         </nav>
