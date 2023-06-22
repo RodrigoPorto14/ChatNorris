@@ -6,6 +6,12 @@ type LoginData =
 {
   username: String;
   password: String;
+  }
+type SignUpData = 
+{
+    email:string;
+    username: string;
+    password: string;
 }
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
@@ -74,4 +80,17 @@ export const makeLogin = (loginData: LoginData) =>
 
   return makeRequest({ url: '/oauth/token', data: payload, method: 'POST', headers });
 
+}
+
+export const makeSignUp = (signUpData: SignUpData) => {
+  const payload = qs.stringify(signUpData);
+
+  return makeRequest({
+    url: '/signup',
+    data: payload,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
 }
