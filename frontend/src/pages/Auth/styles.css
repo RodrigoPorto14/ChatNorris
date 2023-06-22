@@ -1,8 +1,14 @@
-.auth-container
-{
-    background-color: var(--color1);
+.formu{
+    height: fit-content;
 }
 
+.centered-h1 {
+    text-align: center;
+    height: fit-content;
+    margin-bottom: 20px;
+    color:white;
+}
+  
 .input
 {
     display: block;
@@ -12,3 +18,41 @@
     margin-left: 30px;
     background-color: var(--color3);
 }
+.auth-container {
+    max-width: 80%;
+    height: fit-content;
+    margin: 20px auto;
+    padding: 20px 5%;
+    background-color: var(--color1);
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .auth-container .input {
+    width:50%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .auth-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .auth-container .toggle-signup {
+    transform: translateX(-50%);
+    text-align: center;
+    color: #666;
+    cursor: pointer;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: 5% 50%
+  }
+  
