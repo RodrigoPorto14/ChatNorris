@@ -10,16 +10,19 @@ const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {userAuthenticated ? 
-        (
-          <>
-            <Route index element={<Chat />} />
-            <Route path="chats/:selectedChatId" element={<Chat />} />
-          </>
-        ) : 
-        (
-          <Route path="/auth" element={<Auth />} />
-        )}
+        {
+          userAuthenticated ? 
+          (
+            <>
+              <Route index element={<Chat />} />
+              <Route path="chats/:selectedChatId" element={<Chat />} />
+            </>
+          ) 
+          : 
+          (
+            <Route path="/auth" element={<Auth />} />
+          )
+        }
         
         <Route path="*" element={<Navigate to={userAuthenticated ? '/' : '/auth'} replace />} />
 

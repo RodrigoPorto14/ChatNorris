@@ -25,8 +25,6 @@ public class ChatService {
 	{
 		User user = authService.authenticated();
 		return chatRep.findByUser(user);
-		//List<Chat> chats = chatRep.findByUser(user);
-		//return chats.stream().map(c -> new ChatDTO(c)).toList();
 	}
 	
 	@Transactional

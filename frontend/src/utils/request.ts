@@ -10,7 +10,6 @@ type LoginData =
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
 
-
 /****************************************************************** 
 Intercepta requisições axios, caso essa requisição tenha sucesso,
 apenas retorna a resposta, caso fracasse com erro 401 (Unauthorized)
@@ -33,7 +32,8 @@ já inserida
 ******************************************************************/
 export const makeRequest = (params: AxiosRequestConfig) => 
 {
-  return axios({
+  return axios(
+  {
     ...params,
     baseURL: BASE_URL
   });

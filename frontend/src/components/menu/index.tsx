@@ -57,8 +57,8 @@ const Menu = ( {selectedChatId, chats, setChats} : MenuProps ) =>
                     <Link
                         className = {`menu-link ${chat.id.toString() === selectedChatId ? 'active' : ''}`} 
                         to = {`/chats/${chat.id}`}
-                        key = {chat.id} 
-                    > 
+                        key = {chat.id}> 
+                        
                         {chat.title} 
                     </Link>))
                 }  
