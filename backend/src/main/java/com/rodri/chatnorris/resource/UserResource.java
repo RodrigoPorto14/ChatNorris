@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -24,11 +25,11 @@ public class UserResource {
 	@Autowired
 	private UserService service;
 	
-	@GetMapping
-	public ResponseEntity<UserDTO> getProfile()
+	@GetMapping("/verify")
+    public String verifyUser(@RequestParam("token") String token) 
 	{
-		return ResponseEntity.ok().body(service.getProfile());
-	}
+        return service.verifyUser(token);
+    }
 	
 	@PostMapping
 	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO insertDto)

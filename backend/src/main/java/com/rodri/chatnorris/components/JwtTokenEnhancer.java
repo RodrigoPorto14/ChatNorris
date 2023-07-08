@@ -22,10 +22,11 @@ public class JwtTokenEnhancer implements TokenEnhancer{
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
-		User user = userRep.findByEmail(authentication.getName());
+		User user = userRep.findByUsername(authentication.getName());
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", user.getId());
-		map.put("userName", user.getName());
+		map.put("userName", user.getNickname());
+		map.put("active", user.isActive());
 		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
 		token.setAdditionalInformation(map);
 		return accessToken;

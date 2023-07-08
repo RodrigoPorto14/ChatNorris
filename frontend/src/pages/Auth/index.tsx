@@ -5,46 +5,53 @@ import { useState } from 'react';
 import { saveSessionData } from '../../utils/auth';
 import './styles.css';
 
-type FormState = {
-  email: string;
+type FormState = 
+{
+  nickname: string;
   username: string;
   password: string;
 }
 
-const Auth = () => {
+const Auth = () => 
+{
   const { register, handleSubmit } = useForm<FormState>();
   const [hasError, setHasError] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
-  const onSubmit = (data: FormState) => {
-    console.log("oi")
-    if (isSignUp) {
-      //a funcao abaixo tem que ser trocada por uma que faca o processo de cadastramento no banco de dados
+  const onSubmit = (data: FormState) => 
+  {
+    if (isSignUp) 
+    {
+      navigate(0);
       makeSignUp(data)
-        .then(response => {
+        .then(response => 
+        {
           setHasError(false);
           saveSessionData(response.data);
-          navigate(0);
         })
-        .catch(() => {
-          
-          setHasError(true);
-        });
-    } else {
+        .catch(() => { setHasError(true); });  
+    } 
+    else 
+    {
       makeLogin(data)
-        .then(response => {
-          setHasError(false);
-          saveSessionData(response.data);
-          navigate(0);
-        })
-        .catch(() => {
-          setHasError(true);
-        });
+        .then(response => 
+        {
+          if(response.data.active)
+          {
+            setHasError(false);
+            saveSessionData(response.data);
+            navigate(0);
+          }
+          else
+            setHasError(true);
+
+        }).catch(() => { setHasError(true); });
     }
   };
 
-  const toggleSignUp = () => {
+  const toggleSignUp = () => 
+  {
     setIsSignUp(!isSignUp);
     setHasError(false);
   };
@@ -52,22 +59,18 @@ const Auth = () => {
   return (
     <div className='auth-container'>
       <h1 className="centered-h1">ChatNorris</h1>
-      {hasError && <p className='input'>Usuário ou senha inválidos</p>}
+      {hasError && <p className='input'>Usuário inexistente ou inválido</p>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
       {isSignUp && (
           <input
-            {...register('email', {
-              required: 'Campo obrigatório',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Email inválido',
-              },
+            {...register('nickname', {
+              required: 'Campo obrigatório'
             })}
             className='input'
-            type='email'
-            placeholder='Usuario'
-            name='email'
+            type='text'
+            placeholder='Apelido'
+            name='nickname'
           />
         )}
         

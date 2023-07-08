@@ -21,7 +21,7 @@ public class AuthService {
 		try
 		{
 			String username = SecurityContextHolder.getContext().getAuthentication().getName();
-			return userRep.findByEmail(username);
+			return userRep.findByUsername(username);
 		}
 		catch(Exception e) { throw new UnauthorizedException("Invalid user"); }
 	}

@@ -6,10 +6,11 @@ type LoginData =
 {
   username: String;
   password: String;
-  }
+}
+
 type SignUpData = 
 {
-    email:string;
+    nickname: string;
     username: string;
     password: string;
 }
@@ -82,15 +83,11 @@ export const makeLogin = (loginData: LoginData) =>
 
 }
 
-export const makeSignUp = (signUpData: SignUpData) => {
-  const payload = qs.stringify(signUpData);
-
+export const makeSignUp = (signUpData: SignUpData) => 
+{
   return makeRequest({
-    url: '/signup',
-    data: payload,
+    url: '/users',
+    data: signUpData,
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
   });
 }

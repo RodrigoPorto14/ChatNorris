@@ -11,6 +11,7 @@
   
 .input
 {
+    color: white;
     display: block;
     height: 30px;
     width: 200px;
@@ -37,6 +38,7 @@
   }
   
   .auth-container button {
+    
     width: 100%;
     padding: 10px;
     background-color: #4caf50;

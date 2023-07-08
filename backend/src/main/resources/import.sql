@@ -1,5 +1,5 @@
-INSERT INTO tb_user (name, email, password) VALUES ('Rodrigo Porto', 'rodrigo@gmail.com',  '$2a$10$.zOGVUGsCsvuU3LKACLQ0OqKHUiPWFm/Z35PqBrykWGT1G9bPkbSK');
-INSERT INTO tb_user (name, email, password) VALUES ('Reinaldo Coutinho', 'reinaldo@gmail.com', '$2a$10$.zOGVUGsCsvuU3LKACLQ0OqKHUiPWFm/Z35PqBrykWGT1G9bPkbSK');
+INSERT INTO tb_user (nickname, username, password, active, token) VALUES ('Rodrigo Porto', 'rodrigo@gmail.com',  '$2a$10$.zOGVUGsCsvuU3LKACLQ0OqKHUiPWFm/Z35PqBrykWGT1G9bPkbSK', true, 'token1');
+INSERT INTO tb_user (nickname, username, password, active, token) VALUES ('Reinaldo Coutinho', 'reinaldo@gmail.com', '$2a$10$.zOGVUGsCsvuU3LKACLQ0OqKHUiPWFm/Z35PqBrykWGT1G9bPkbSK', true, 'token2');
 
 INSERT INTO tb_chat (title, user_id) VALUES ('Title 1', 1)
 INSERT INTO tb_chat (title, user_id) VALUES ('Title 2', 1)

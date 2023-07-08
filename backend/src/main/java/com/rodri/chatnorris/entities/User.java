@@ -28,20 +28,22 @@ public class User implements UserDetails,Serializable {
 	private Long id;
 	
 	@Column(unique = true)
-	private String email;
+	private String username;
 	
-	private String name;
+	private String nickname;
 	private String password;
+	private boolean active;
+	private String token;
 	
 	@OneToMany(mappedBy = "user")
 	private Set<Chat> chats = new HashSet<>();
 	
 	public User() {}
 
-	public User(Long id, String email, String name, String password) {
+	public User(Long id, String username, String nickname, String password) {
 		this.id = id;
-		this.email = email;
-		this.name = name;
+		this.username = username;
+		this.nickname = nickname;
 		this.password = password;
 	}
 
@@ -53,24 +55,40 @@ public class User implements UserDetails,Serializable {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername_() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
-	public String getName() {
-		return name;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNickname(String name) {
+		this.nickname = name;
 	}
 
 	public String getPassword() {
 		return password;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public void setPassword(String password) {
@@ -105,7 +123,7 @@ public class User implements UserDetails,Serializable {
 
 	@Override
 	public String getUsername() {
-		return email;
+		return username;
 	}
 
 	@Override
