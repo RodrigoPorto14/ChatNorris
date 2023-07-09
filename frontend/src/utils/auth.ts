@@ -82,3 +82,11 @@ export const getAuthenticatedUserName = () =>
   const {userName} = getSessionData()
   return userName
 }
+
+/****************************************************************** 
+Remove os dados de autenticação do localStorage
+******************************************************************/
+export const logout = () =>
+{
+  localStorage.removeItem('authData');
+}

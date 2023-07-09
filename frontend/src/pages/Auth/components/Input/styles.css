@@ -1,0 +1,21 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.input
+{
+    color: white;
+    padding: 5px 10px;
+    background-color: var(--color3);
+    border-radius: 0.5rem;
+    height: 30px;
+}
+
+.error
+{
+    padding-left: 2px;
+    color: rgba(239, 68, 68,1)
+}

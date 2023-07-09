@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import { CLIENT_ID, CLIENT_SECRET, getSessionData, logout } from './auth';
+import { RegisterData } from '../pages/Auth/Register';
 
 type LoginData = 
 {
@@ -8,12 +9,6 @@ type LoginData =
   password: String;
 }
 
-type SignUpData = 
-{
-    nickname: string;
-    username: string;
-    password: string;
-}
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
 
@@ -83,11 +78,12 @@ export const makeLogin = (loginData: LoginData) =>
 
 }
 
-export const makeSignUp = (signUpData: SignUpData) => 
+export const makeSignUp = (registerData: RegisterData) => 
 {
-  return makeRequest({
+  return makeRequest(
+  {
     url: '/users',
-    data: signUpData,
+    data: registerData,
     method: 'POST',
   });
 }

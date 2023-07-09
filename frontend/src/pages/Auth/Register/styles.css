@@ -1,0 +1,13 @@
+.to-login
+{
+    color: var(--color3);
+    text-decoration: none;
+    margin: auto;
+    width: fit-content;
+}
+
+.to-login:hover
+{
+    cursor: pointer;
+    color: white;
+}

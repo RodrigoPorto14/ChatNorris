@@ -1,5 +1,6 @@
 import Chat from './pages/Chat';
-import Auth from './pages/Auth';
+import Register from './pages/Auth/Register';
+import Login from './pages/Auth/Login';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { isAuthenticated } from "./utils/auth";
 
@@ -20,11 +21,14 @@ const Routing = () => {
           ) 
           : 
           (
-            <Route path="/auth" element={<Auth />} />
+            <>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </>
           )
         }
         
-        <Route path="*" element={<Navigate to={userAuthenticated ? '/' : '/auth'} replace />} />
+        <Route path="*" element={<Navigate to={userAuthenticated ? '/' : '/login'} replace />} />
 
       </Routes>
     </BrowserRouter>

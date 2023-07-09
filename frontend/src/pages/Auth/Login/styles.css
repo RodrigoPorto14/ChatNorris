@@ -1,0 +1,13 @@
+.to-register
+{
+    color: var(--color3);
+    text-decoration: none;
+    margin: auto;
+    width: fit-content;
+}
+
+.to-register:hover
+{
+    cursor: pointer;
+    color: white;
+}
