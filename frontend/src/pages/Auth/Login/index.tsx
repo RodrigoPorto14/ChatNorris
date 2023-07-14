@@ -64,6 +64,7 @@ const Login = () =>
                     register={register}
                     name="password"
                     errors={errors}
+                    invalidUser={invalidUser}
                 />
 
                 <Button> Entrar </Button>

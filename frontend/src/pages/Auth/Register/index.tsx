@@ -48,7 +48,7 @@ const Register = () =>
     const onSubmit = (data : RegisterUserFormData) =>
     {
         const registerData = {nickname : data.nickname, username: data.email, password : data.password}
-        navigate(0);
+        navigate('/login');
         makeSignUp(registerData)
             .then(response => 
             {

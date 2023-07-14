@@ -35,12 +35,11 @@ public class MessageService {
 	public List<MessageDTO> findByChat(Long chatId)
 	{
 		User user = authService.authenticated();
-		//Chat chat = chatRep.getReferenceById(chatId);
 		Chat chat = chatRep.findById(chatId).orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		
-		if(!user.equals(chat.getUser())) throw new ForbiddenException("Access denied");
+		if(!user.equals(chat.getUser())) 
+			throw new ForbiddenException("Access denied");
 	
-		//List<Message> messages = chat.getMessages();
 		List<Message> messages = messageRep.findByChatOrderByCreatedAt(chat);
 		return messages.stream().map(m -> new MessageDTO(m)).toList();
 	}

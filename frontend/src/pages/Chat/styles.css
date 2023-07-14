@@ -26,13 +26,11 @@
    height:auto;
    width: -webkit-fill-available;
    background-color: var(--color2);
-   padding: 20px;
+   padding: 35px;
    box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
 }
 .dialog input[type=text] {
-       width: 70%;
        padding: 12px 20px;
-       margin: 10px 20px;
        box-sizing: border-box;
        border: none;
        border-radius: 20px;
@@ -59,6 +57,22 @@
 .dialog button:hover {
     background-color: var(--color3);;
 }
+
+.input-container
+{
+    width: inherit;
+    height: 100%;
+    position: relative;
+}
+
+.send-icon
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
 /* Estilos para as mensagens */
 .message-container {
     width:auto;

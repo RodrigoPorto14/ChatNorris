@@ -7,9 +7,10 @@ type InputProps<T> =
     register: any;
     name: keyof T;
     errors: any;
+    invalidUser? : boolean;
 };
   
-function Input<T>({ placeholder, type, register, name, errors } : InputProps<T>)
+function Input<T>({ placeholder, type, register, name, errors, invalidUser = false } : InputProps<T>)
 {
     return (
 
@@ -22,7 +23,8 @@ function Input<T>({ placeholder, type, register, name, errors } : InputProps<T>)
                 {...register(name)}
             />
             
-            {errors[name] && <span className="error">{errors[name].message}</span>}
+            {invalidUser && <span className="error"> Usuário e senha invalidos </span>}
+            {!invalidUser && errors[name] && <span className="error">{errors[name].message}</span>}
         
         </div>
     );

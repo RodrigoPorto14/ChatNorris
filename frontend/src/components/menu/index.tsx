@@ -48,7 +48,7 @@ const Menu = ( {selectedChatId, chats, setChats} : MenuProps ) =>
             
             <Link className='new-chat-button' to="/" >
                 <FontAwesomeIcon className="plus-icon" icon={faPlus} />
-                New chat
+                Nova conversa
             </Link>
 
             <ul className='history-container'>

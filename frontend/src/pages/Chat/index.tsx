@@ -3,6 +3,8 @@ import axios from 'axios';
 import Message from '../../types/Message'
 import Conversation from '../../types/Conversation'
 import React, { useState, useRef, useEffect } from 'react';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { makePrivateRequest } from '../../utils/request'
@@ -171,8 +173,9 @@ const Chat = () =>
                 </div>
 
                 <div className="dialog">
+    
                     <input type="text" placeholder="Digite sua mensagem..." value={inputText} onChange={handleInputChange} onKeyDown={handleKeyDown}/>
-                    <button onClick={handleSendMessage}>Enviar</button>
+                    
                 </div>
         
             </section>
